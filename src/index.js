@@ -10,7 +10,7 @@ const reducer = (state = [], action) => {
   console.log(action);
   switch (action.type) {
     case ADD_TODO:
-      return [];
+      return [...state, { text: action.text, id: Date.now() }]; //이전스테이트와 새로운 todo 가지고있다.
     case DELETE_TODO:
       return [];
     default:
@@ -19,6 +19,7 @@ const reducer = (state = [], action) => {
 };
 
 const store = createStore(reducer);
+store.subscribe(() => console.log(store.getState()));
 
 const onSubmit = (e) => {
   e.preventDefault();
