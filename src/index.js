@@ -6,7 +6,7 @@ const ul = document.querySelector("ul");
 const ADD_TODO = "ADD_TODO";
 const DELETE_TODO = "DELETE_TODO";
 const addToDo = (text) => {
-  return { type: ADD_TODO, text }; //return object
+  return { type: ADD_TODO, text }; //return object action을 상징
 };
 const deleteToDo = (id) => {
   return { type: DELETE_TODO, id };
@@ -26,9 +26,10 @@ const reducer = (state = [], action) => {
 };
 
 const store = createStore(reducer);
-store.subscribe(() => console.log(store.getState()));
+store.subscribe(() => console.log(store.getState())); //상태변경 감지
 
 const dispatchaddToDo = (text) => {
+  //action을 reducer에게 전달하는 역할
   store.dispatch(addToDo(text));
 };
 const dispatchdeleteToDo = (e) => {
